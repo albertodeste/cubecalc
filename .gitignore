@@ -11,7 +11,7 @@
 # Libraries
 *.lib
 *.a
-*.la
+*.laG
 *.lo
 
 # Shared objects (inc. Windows DLLs)
@@ -27,6 +27,13 @@
 *.i*86
 *.x86_64
 *.hex
+cubecalc
 
 # Debug files
 *.dSYM/
+
+#Cube files
+*.cube
+
+#MacOS
+.DS_Store
