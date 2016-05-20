@@ -7,7 +7,31 @@ static int const MOVE_L = 4;
 static int const MOVE_B = 5;
 static int const MOVE_D = 6;
 
-void move_u(char * positions, char * orientations)
+unsigned long move_u(unsigned long p, char * orientations){
+    return ((p >> 3) & 07000000) | ((p >> 3) & 0700000) | ((p >> 3) & 070000) | ((p << 9) & 070000000) | (p & 00007777);
+}
+
+unsigned long move_r(unsigned long p, char * orientations){
+    return ((p << 3) & 07000000) | ((p >> 12) & 0700) | ((p >> 3) & 070) | ((p << 12) & 0700000) | (p & 070077007);
+}
+
+unsigned long move_l(unsigned long p, char * orientations){
+    return ((p >> 9) & 070000) | ((p >> 12) & 07) | ((p << 9) & 07000) | ((p << 12) & 070000000) | (p & 07700770);
+}
+
+unsigned long move_f(unsigned long p, char * orientations){
+    return ((p << 3) & 0700000) | ((p >> 12) & 070) | ((p >> 3) & 07) | ((p << 12) & 07000) | (p & 077007700);
+}
+
+unsigned long move_b(unsigned long p, char * orientations){
+    return ((p << 3) & 070000000) | ((p >> 12) & 07000) | ((p >> 3) & 0700) | ((p << 12) & 07000000) | (p & 00770077);
+}
+
+unsigned long move_d(unsigned long p, char * orientations){
+    return ((p >> 3) & 0700) | ((p >> 3) & 070) | ((p >> 3) & 07) | ((p << 9) & 07000) | (p & 077770000);
+}        
+
+/*void move_u(char * positions, char * orientations)
 {
     //corners
     char tmp = positions[3];
@@ -180,4 +204,4 @@ void move_b(char *positions, char *orientations)
     orientations[12] = ((orientations[16] + 2) % 2) + 2;
     orientations[16] = ((orientations[15] + 2) % 2) + 2;
     orientations[15] = ((tmp + 2) % 2) + 2;
-}
+}*/
