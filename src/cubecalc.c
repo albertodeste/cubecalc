@@ -2,6 +2,23 @@
 #include <stdlib.h>
 #include "calcthread.c"
 
+void new_version()
+{
+  FILE *f = fopen("res.hex", "wb");
+  //Setup as solved cube
+  unsigned long p = 0x00053977;
+  unsigned short o = 0;
+  printf("Solved cibe: %ld - %d\n", p, o);
+  fwrite(&p, 1, 3, f);
+  //Execute a R move
+  p = ((p << 3) & 07000000) | ((p >> 12) & 0700) | ((p >> 3) & 070) | ((p << 12) & 0700000) | (p & 070077007);
+  //TODO update o using mod solution
+  printf("R: %ld - %d\n", p, o);
+  fwrite(&p, 1, 3, f);
+  fwrite(&o, 1, 2, f);
+  fclose(f);
+}
+
 int main(void)
 {
   pthread_t pth;

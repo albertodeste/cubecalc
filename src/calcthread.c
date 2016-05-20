@@ -7,7 +7,7 @@ struct calc_thread_args
 };
 
 //Maximum level of recursions to attempt (must become 18)
-static int const REC_LEVELS = 14;
+static int const REC_LEVELS = 7;
 
 void rec(char *positions, char *orientations, int level, FILE *file, int last);
 
