@@ -74,4 +74,96 @@ void rec(char *positions, char *orientations, int level, FILE *file, int last)
 
     move_d(positions, orientations);
   }
+    
+    if(last != MOVE_R)
+  {//U moves set
+    move_r(positions, orientations);
+  
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_R);
+
+    move_r(positions, orientations);
+
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_R);
+
+    move_r(positions, orientations);
+
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_R);
+
+    move_r(positions, orientations);
+  }
+    
+    if(last != MOVE_L)
+  {//U moves set
+    move_l(positions, orientations);
+  
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_L);
+
+    move_l(positions, orientations);
+
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_L);
+
+    move_l(positions, orientations);
+
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_L);
+
+    move_l(positions, orientations);
+  }
+    
+    if(last != MOVE_F)
+  {//U moves set
+    move_f(positions, orientations);
+  
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_F);
+
+    move_f(positions, orientations);
+
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_F);
+
+    move_f(positions, orientations);
+
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_F);
+
+    move_f(positions, orientations);
+  }
+    
+    if(last != MOVE_B)
+  {//U moves set
+    move_b(positions, orientations);
+  
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_B);
+
+    move_b(positions, orientations);
+
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_B);
+
+    move_b(positions, orientations);
+
+    fprintf(file, "%s%s", positions, orientations);
+
+    rec(positions, orientations, level + 1, file, MOVE_B);
+
+    move_b(positions, orientations);
+  }
 }
