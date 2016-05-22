@@ -2,14 +2,14 @@
 
 struct Cube
 {
-  unsigned long positions;
-  unsigned short orientations;
+  unsigned long *positions;
+  unsigned short *orientations;
 };
 
 //Maximum level of recursions to attempt (must become 18)
 static char const REC_LEVELS = 7;
 
-void rec(unsigned long positions, unsigned short orientations, char level, FILE *file, char last);
+void rec(unsigned long *positions, unsigned short *orientations, char level, FILE *file, char last);
 
 void *calc_thread(void *arg)
 {
@@ -20,10 +20,12 @@ void *calc_thread(void *arg)
 
   rec(cube->positions, cube->orientations, 1, file, 0);
 
+  fclose(file);
+
   return NULL;
 }
 
-void rec(unsigned long positions, unsigned short orientations, char level, FILE *file, char last)
+void rec(unsigned long *positions, unsigned short *orientations, char level, FILE *file, char last)
 {
   if (level > REC_LEVELS)
   {
@@ -32,138 +34,156 @@ void rec(unsigned long positions, unsigned short orientations, char level, FILE 
   
   if(last != MOVE_U)
   {//U moves set
-    positions = move_u(positions, orientations);
+    move_u(positions, orientations);
   
-    //fprintf(file, "%lu%lu", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_U);
 
-    positions = move_u(positions, orientations);
+    move_u(positions, orientations);
 
-    //fprintf(file, "%lu%s", positions, orientations);
-
-    rec(positions, orientations, level + 1, file, MOVE_U);
-
-    positions = move_u(positions, orientations);
-
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_U);
 
-    positions = move_u(positions, orientations);
+    move_u(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_U);
+
+    move_u(positions, orientations);
   }
   if(last != MOVE_D)
   {//D moves set
-    positions = move_d(positions, orientations);
+    move_d(positions, orientations);
   
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_D);
 
-    positions = move_d(positions, orientations);
+    move_d(positions, orientations);
 
-    //fprintf(file, "%lu%s", positions, orientations);
-
-    rec(positions, orientations, level + 1, file, MOVE_D);
-
-    positions = move_d(positions, orientations);
-
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_D);
 
-    positions = move_d(positions, orientations);
+    move_d(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_D);
+
+    move_d(positions, orientations);
   }
     
     if(last != MOVE_R)
   {//U moves set
-    positions = move_r(positions, orientations);
+    move_r(positions, orientations);
   
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_R);
 
-    positions = move_r(positions, orientations);
+    move_r(positions, orientations);
 
-    //fprintf(file, "%lu%s", positions, orientations);
-
-    rec(positions, orientations, level + 1, file, MOVE_R);
-
-    positions = move_r(positions, orientations);
-
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_R);
 
-    positions = move_r(positions, orientations);
+    move_r(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_R);
+
+    move_r(positions, orientations);
   }
     
     if(last != MOVE_L)
   {//U moves set
-    positions = move_l(positions, orientations);
+    move_l(positions, orientations);
   
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_L);
 
-    positions = move_l(positions, orientations);
+    move_l(positions, orientations);
 
-    //fprintf(file, "%lu%s", positions, orientations);
-
-    rec(positions, orientations, level + 1, file, MOVE_L);
-
-    positions = move_l(positions, orientations);
-
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_L);
 
-    positions = move_l(positions, orientations);
+    move_l(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_L);
+
+    move_l(positions, orientations);
   }
     
     if(last != MOVE_F)
   {//U moves set
-    positions = move_f(positions, orientations);
+    move_f(positions, orientations);
   
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_F);
 
-    positions = move_f(positions, orientations);
+    move_f(positions, orientations);
 
-    //fprintf(file, "%lu%s", positions, orientations);
-
-    rec(positions, orientations, level + 1, file, MOVE_F);
-
-    positions = move_f(positions, orientations);
-
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_F);
 
-    positions = move_f(positions, orientations);
+    move_f(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_F);
+
+    move_f(positions, orientations);
   }
     
     if(last != MOVE_B)
   {//U moves set
-    positions = move_b(positions, orientations);
+    move_b(positions, orientations);
   
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_B);
 
-    positions = move_b(positions, orientations);
+    move_b(positions, orientations);
 
-    //fprintf(file, "%lu%s", positions, orientations);
-
-    rec(positions, orientations, level + 1, file, MOVE_B);
-
-    positions = move_b(positions, orientations);
-
-    //fprintf(file, "%lu%s", positions, orientations);
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
 
     rec(positions, orientations, level + 1, file, MOVE_B);
 
-    positions = move_b(positions, orientations);
+    move_b(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_B);
+
+    move_b(positions, orientations);
   }
 }

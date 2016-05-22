@@ -12,6 +12,6 @@ The software will handle:
 * Fast storage of cube status using a known storage structure based on two arrays monitoring position and orientation of each cubie.
 * Concurrent processing of the positions (at least 18 threads will run simultaneously).
 * Storage management from dedicated thread so each "calculator thread" can focus exclusively on calculating positions.
-* Small solutions file size (41 bytes for each cube should be enough)
+* Small solutions file size (10 bytes for each cube should be enough)
 
 This piece of code will be developed with the suggestions (and maybe the help) of my dear friend link:https://twitter.com/glaggia[kevinpirola]. This project is available in Java implementation (slower... sigh) on his github link:https://github.com/kevinpirola/cube-calculator[here]
