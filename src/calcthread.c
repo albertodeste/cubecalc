@@ -6,8 +6,8 @@ struct Cube
   unsigned short *orientations;
 };
 
-//Maximum level of recursions to attempt (must become 18)
-static char const REC_LEVELS = 7;
+//Maximum level of recursions to attempt (must become 18 for 3x3, 12 for 2x2)
+static char const REC_LEVELS = 10;
 
 void rec(unsigned long *positions, unsigned short *orientations, char level, FILE *file, char last);
 
@@ -31,7 +31,7 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
   {
     return;
   }
-  
+
   if(last != MOVE_U)
   {//U moves set
     move_u(positions, orientations);
@@ -57,6 +57,111 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
 
     move_u(positions, orientations);
   }
+
+  if(last != MOVE_R)
+  {//U moves set
+    move_r(positions, orientations);
+  
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_R);
+
+    move_r(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_R);
+
+    move_r(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_R);
+
+    move_r(positions, orientations);
+  }  
+
+  if(last != MOVE_F)
+  {//U moves set
+    move_f(positions, orientations);
+  
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_F);
+
+    move_f(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_F);
+
+    move_f(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_F);
+
+    move_f(positions, orientations);
+  } 
+/*
+  if(last != MOVE_B)
+  {//U moves set
+    move_b(positions, orientations);
+  
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_B);
+
+    move_b(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_B);
+
+    move_b(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_B);
+
+    move_b(positions, orientations);
+  }
+
+  if(last != MOVE_L)
+  {//U moves set
+    move_l(positions, orientations);
+  
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_L);
+
+    move_l(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_L);
+
+    move_l(positions, orientations);
+
+    fwrite(positions, 1, 3, file);
+    fwrite(orientations, 1, 2, file);
+
+    rec(positions, orientations, level + 1, file, MOVE_L);
+
+    move_l(positions, orientations);
+  }
+
   if(last != MOVE_D)
   {//D moves set
     move_d(positions, orientations);
@@ -82,108 +187,5 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
 
     move_d(positions, orientations);
   }
-    
-    if(last != MOVE_R)
-  {//U moves set
-    move_r(positions, orientations);
-  
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_R);
-
-    move_r(positions, orientations);
-
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_R);
-
-    move_r(positions, orientations);
-
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_R);
-
-    move_r(positions, orientations);
-  }
-    
-    if(last != MOVE_L)
-  {//U moves set
-    move_l(positions, orientations);
-  
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_L);
-
-    move_l(positions, orientations);
-
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_L);
-
-    move_l(positions, orientations);
-
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_L);
-
-    move_l(positions, orientations);
-  }
-    
-    if(last != MOVE_F)
-  {//U moves set
-    move_f(positions, orientations);
-  
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_F);
-
-    move_f(positions, orientations);
-
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_F);
-
-    move_f(positions, orientations);
-
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_F);
-
-    move_f(positions, orientations);
-  }
-    
-    if(last != MOVE_B)
-  {//U moves set
-    move_b(positions, orientations);
-  
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_B);
-
-    move_b(positions, orientations);
-
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_B);
-
-    move_b(positions, orientations);
-
-    fwrite(positions, 1, 3, file);
-    fwrite(orientations, 1, 2, file);
-
-    rec(positions, orientations, level + 1, file, MOVE_B);
-
-    move_b(positions, orientations);
-  }
+*/
 }
