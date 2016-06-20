@@ -2,7 +2,7 @@
 Simple C program that calculates all Rubik's cube positions using threads and low memory data structures and saves results in file for future db import.
 
 ## The idea ##
-At our company me and mine collagues share the passion for Rubik's cube, personally I developed many programs trying to solve the Rubik's cube when finally an idea! Why not to use the knowledge that our company gave us and develop a software that can easilly solve ANY Rubik's cube? Well, this repository isn't about solving Rubik's cube but actually the opposite calculate all the positions ans save the result in a file for database import, and here will come a future software for import and solve the cube but you'll see as times goes on ;-)
+At our company me and mine collagues share the passion for Rubik's cube, personally I developed many programs trying to solve the Rubik's cube when finally we had an idea! Why not to use the knowledge that our company gave us to develop a software that can easilly solve ANY Rubik's cube? Well, this repository isn't about solving Rubik's cube but actually the opposite: calculate all the positions and save the results in a file for future database import. This will become a future software for importing and solving the cube. Stay tuned you'll see the magic as times goes on ;-)
 
 ## Actual implementation ##
 WARNING: This project is at ALPHA and EXPERIMENTAL level and is not suitable for any kind of production environments (even if the license lets you use it as you prefer).
