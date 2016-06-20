@@ -25,6 +25,71 @@ void *calc_thread(void *arg)
   return NULL;
 }
 
+void sexyMove(unsigned long *positions, unsigned short *orientations){
+	move_r(positions, orientations);
+        move_u(positions, orientations);
+        move_r(positions, orientations);
+        move_r(positions, orientations);
+        move_r(positions, orientations);
+        move_u(positions, orientations);
+        move_u(positions, orientations);
+        move_u(positions, orientations);
+}
+
+void prova(unsigned long *positions, unsigned short *orientations){
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+}
+
+void effe(unsigned long *p, unsigned short *o){
+	move_f(p,o);
+	move_f(p,o);
+	move_f(p,o);
+	move_f(p,o);
+}
+
+void bi(unsigned long *p, unsigned short *o){
+	move_b(p,o);
+	move_b(p,o);
+	move_b(p,o);
+	move_b(p,o);
+}
+
+void double_t_double_t(unsigned long *p, unsigned short *o){
+	move_r(p,o);
+	move_r(p,o);
+	move_u(p,o);
+	move_r(p,o);
+	move_r(p,o);
+	move_u(p,o);
+	move_u(p,o);
+	move_f(p,o);
+	move_f(p,o);
+	move_u(p,o);
+	move_f(p,o);
+	move_f(p,o);
+	move_b(p,o);
+	move_b(p,o);
+	move_u(p,o);
+	move_b(p,o);
+	move_b(p,o);
+	move_u(p,o);
+	move_u(p,o);
+	move_r(p,o);
+	move_r(p,o);
+	move_u(p,o);
+	move_r(p,o);
+	move_r(p,o);
+	move_u(p,o);
+	move_u(p,o);
+	move_d(p,o);
+	move_d(p,o);
+}
+
 void rec(unsigned long *positions, unsigned short *orientations, char level, FILE *file, char last)
 {
   if (level > REC_LEVELS)

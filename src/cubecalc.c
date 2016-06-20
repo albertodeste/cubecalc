@@ -13,10 +13,16 @@ int main(void)
   *cube->positions = 0x00053977;
   *cube->orientations = 0;
   
-  pthread_create(&pth, NULL, calc_thread, (void *) cube);
+ // pthread_create(&pth, NULL, calc_thread, (void *) cube);
 
   pthread_join(pth, NULL);
-  //pthread_cancel(pth);
+  pthread_cancel(pth);
+
+	//prova(cube->positions, cube->orientations);
+	//double_t_double_t(cube->positions, cube->orientations);
+	//printf("%l %lu\n", *cube->positions, *cube->orientations);
+	//effe(cube->positions, cube->orientations);
+	//printf("%lu %d\n",*cube->positions, *cube->orientations);
   
   return 0;
 }
