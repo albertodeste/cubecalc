@@ -50,3 +50,68 @@ void move_d(unsigned long *p, unsigned short *o){
     *p = (((*p) >> 3) & 0777) | (((*p) << 9) & 07000) | ((*p) & 077770000);
     *o = (((*o) >> 2) & 0x3f) | (((*o) << 6) & 0xc0) | ((*o) & 0xff00);
 } 
+
+void sexyMove(unsigned long *positions, unsigned short *orientations){
+	move_r(positions, orientations);
+        move_u(positions, orientations);
+        move_r(positions, orientations);
+        move_r(positions, orientations);
+        move_r(positions, orientations);
+        move_u(positions, orientations);
+        move_u(positions, orientations);
+        move_u(positions, orientations);
+}
+
+void prova(unsigned long *positions, unsigned short *orientations){
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+        sexyMove(positions, orientations);
+}
+
+void effe(unsigned long *p, unsigned short *o){
+	move_f(p,o);
+	move_f(p,o);
+	move_f(p,o);
+	move_f(p,o);
+}
+
+void bi(unsigned long *p, unsigned short *o){
+	move_b(p,o);
+	move_b(p,o);
+	move_b(p,o);
+	move_b(p,o);
+}
+
+void double_t_double_t(unsigned long *p, unsigned short *o){
+	move_r(p,o);
+	move_r(p,o);
+	move_u(p,o);
+	move_r(p,o);
+	move_r(p,o);
+	move_u(p,o);
+	move_u(p,o);
+	move_f(p,o);
+	move_f(p,o);
+	move_u(p,o);
+	move_f(p,o);
+	move_f(p,o);
+	move_b(p,o);
+	move_b(p,o);
+	move_u(p,o);
+	move_b(p,o);
+	move_b(p,o);
+	move_u(p,o);
+	move_u(p,o);
+	move_r(p,o);
+	move_r(p,o);
+	move_u(p,o);
+	move_r(p,o);
+	move_r(p,o);
+	move_u(p,o);
+	move_u(p,o);
+	move_d(p,o);
+	move_d(p,o);
+}
