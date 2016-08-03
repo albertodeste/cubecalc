@@ -1,7 +1,7 @@
 #include <pthread.h>
 #include <stdlib.h>
-#include "calcthread.c"
 #include "neo4j.c"
+#include "calcthread.c"
 
 int main(void)
 {
@@ -14,18 +14,12 @@ int main(void)
   *cube->positions = 0x00053977;
   *cube->orientations = 0;
   
-  //pthread_create(&pth, NULL, calc_thread, (void *) cube);
+  cube->lastId = run_query("CREATE (c:Cube:Solved {positions:\"53977\", orientations:\"0\"}) RETURN id(c)");
+  
+  pthread_create(&pth, NULL, calc_thread, (void *) cube);
 
-  int id = run_query("MERGE (c:Cube:Solved {positions:\"53977\", orientations:\"0\"}) RETURN id(c)");
-  printf("%d\n", id);
-  //pthread_join(pth, NULL);
+  pthread_join(pth, NULL);
   //pthread_cancel(pth);
-
-	//prova(cube->positions, cube->orientations);
-	//double_t_double_t(cube->positions, cube->orientations);
-	//printf("%l %lu\n", *cube->positions, *cube->orientations);
-	//effe(cube->positions, cube->orientations);
-	//printf("%lu %d\n",*cube->positions, *cube->orientations);
   
   return 0;
 }

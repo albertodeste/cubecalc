@@ -1,4 +1,4 @@
-#include "neo4j-client.h"
+#include "../lib/neo4j-client.h"
 #include <errno.h>
 #include <stdio.h>
 
