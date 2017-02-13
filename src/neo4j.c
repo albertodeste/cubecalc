@@ -6,6 +6,7 @@ char * neo4j_connection_string = "neo4j://neo4j:password@localhost:7687";
 
 int run_query(char * query)
 {
+  //printf("%s\n",query);
   int id = -1;
   neo4j_client_init();
   neo4j_connection_t *c = neo4j_connect(neo4j_connection_string, NULL, NEO4J_INSECURE);

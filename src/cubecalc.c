@@ -57,7 +57,7 @@ int main(void)
         break;
     } 
 
-    sprintf(query, "MATCH (o) WHERE id(o) = %d WITH o CREATE (c:Cube {positions:%lu, orientations:%hu})<-[:%s]-(o) RETURN id(c)", cube->lastId, *cube->positions, *cube->orientations, moves[i]);
+    sprintf(query, "MATCH (o) WHERE id(o) = %d WITH o CREATE (c:Cube {positions:'%lx', orientations:'%hx'})<-[:%s]-(o) RETURN id(c)", cube->lastId, *cube->positions, *cube->orientations, moves[i]);
 
     cube->lastId = run_query(query);
     cube->lastMove = movesId[i/3];

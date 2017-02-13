@@ -3,8 +3,8 @@
 //Choose if the result should be written to file or into database
 static char const WRITE_TO_FILE = 0;
 
-//Maximum level of recursions to attempt (must become 18 for 3x3, 12 for 2x2)
-static char const REC_LEVELS = 5;
+//Maximum level of recursions to attempt (must become 18 for 3x3, 10 for 2x2 if threading at level 1)
+static char const REC_LEVELS = 2;
 
 static char const MOVES_STATES[3] = {' ', '2', 'i'};
 static char const MOVE_FORMAT[4] = "%c%c";
@@ -35,8 +35,9 @@ int persist(FILE *file, unsigned long *positions, unsigned short *orientations, 
   } 
   else
   {
+    //TODO match node by positions and orientations and if present return -1 to block recusrion
     char query[200];
-    sprintf(query, "MATCH (o) WHERE id(o) = %d WITH o CREATE (c:Cube {positions:%lu, orientations:%hu})<-[:%s]-(o) RETURN id(c)", lastId, *positions, *orientations, move);
+    sprintf(query, "MATCH (o) WHERE id(o) = %d WITH o CREATE (c:Cube {positions:'%lx', orientations:'%hx'})<-[:%s]-(o) RETURN id(c)", lastId, *positions, *orientations, move);
     result = run_query(query);
   }
   return result;
@@ -61,7 +62,10 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
     {
       sprintf(move, "%c%c", 'U', MOVES_STATES[index]);
       id = persist(file, positions, orientations, lastId, move);
-      rec(positions, orientations, level + 1, file, MOVE_U, id);
+      if(id != -1)
+      {
+        rec(positions, orientations, level + 1, file, MOVE_U, id);
+      }
       move_u(positions, orientations);
     }
   }
@@ -74,7 +78,10 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
     {
       sprintf(move, "%c%c", 'R', MOVES_STATES[index]);
       id = persist(file, positions, orientations, lastId, move);
-      rec(positions, orientations, level + 1, file, MOVE_R, id);
+      if(id != -1)
+      {
+        rec(positions, orientations, level + 1, file, MOVE_R, id);
+      }
       move_r(positions, orientations);
     }
   }  
@@ -87,7 +94,10 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
     {
       sprintf(move, "%c%c", 'F', MOVES_STATES[index]);
       id = persist(file, positions, orientations, lastId, move);
-      rec(positions, orientations, level + 1, file, MOVE_F, id);
+      if(id != -1)
+      {
+        rec(positions, orientations, level + 1, file, MOVE_F, id);
+      }
       move_f(positions, orientations);
     }  
   } 
@@ -100,7 +110,10 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
     {
       sprintf(move, "%c%c", 'B', MOVES_STATES[index]);
       id = persist(file, positions, orientations, lastId, move);
-      rec(positions, orientations, level + 1, file, MOVE_B, id);
+      if(id != -1)
+      {
+        rec(positions, orientations, level + 1, file, MOVE_B, id);
+      }
       move_b(positions, orientations);
     }
   }
@@ -113,7 +126,10 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
     {
       sprintf(move, "%c%c", 'L', MOVES_STATES[index]);
       id = persist(file, positions, orientations, lastId, move);
-      rec(positions, orientations, level + 1, file, MOVE_L, id);
+      if(id != -1)
+      {
+        rec(positions, orientations, level + 1, file, MOVE_L, id);
+      }
       move_l(positions, orientations);
     }
   }
@@ -126,7 +142,10 @@ void rec(unsigned long *positions, unsigned short *orientations, char level, FIL
     {
       sprintf(move, "%c%c", 'D', MOVES_STATES[index]);
       id = persist(file, positions, orientations, lastId, move);
-      rec(positions, orientations, level + 1, file, MOVE_D, id);
+      if(id != -1)
+      {
+        rec(positions, orientations, level + 1, file, MOVE_D, id);
+      }
       move_d(positions, orientations);
     }
   }
